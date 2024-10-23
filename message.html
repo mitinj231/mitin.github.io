@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Message</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        /* Reset default margin and padding */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+
+        /* Video background styling */
+        #video-background, #second-video {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            top: 0;
+            left: 0;
+        }
+
+        #video-background {
+            z-index: -2;
+        }
+
+        #second-video {
+            z-index: -1;
+            display: none; /* Initially hidden */
+        }
+
+        /* Main content styling */
+        #main-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            color: #f8e71c;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            visibility: hidden; /* Initially hidden */
+        }
+
+        #birthday-message {
+            font-size: 4em;
+            font-weight: bold;
+            font-family: 'Pacifico', cursive;
+        }
+
+        #name {
+            color: #ff4081;
+        }
+
+        /* Scrollable content styling */
+        .divcontainer {
+            position: relative;
+            display: flex;
+    justify-content: center;
+    align-items: center;
+    /* width: 100vw; */
+    height: 100vh;
+    margin-bottom: 20vh;
+    overflow: hidden;
+    
+}
+
+.video-wrapper {
+    /* Example border color */
+    border-radius: 10px; /* Desired border radius */
+    overflow: hidden; /* Ensure the video respects the border radius */
+}
+
+.main_suhani {
+    width: 90vw;
+    height: auto;
+    margin: 20px auto;
+    object-fit: cover;
+    transition: opacity;
+    /* Removed border-radius from here */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: transform 2s ease-in-out;
+    display: inline;
+   
+}
+
+        .container {
+            position: relative;
+            z-index: 3;
+        
+            /* max-height: 100vh; */
+            overflow-y: auto;
+            /* background-image: linear-gradient(135deg, #eec0c6, #7ee8fa); */
+            padding: 10px;
+            margin: 5vh auto;
+            width: 90vw;
+            height: auto;
+            /* border-radius: 10px; */
+            /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); */
+            
+        }
+
+        .item{
+	box-shadow: 
+		inset var(--itemWidthMinus) var(--itemWidthMinus) 0  rgb(255,228,225), 
+		inset var(--itemWidth) var(--itemWidthMinus) 0 rgb(255,228,225), 
+		inset var(--itemWidthMinus) var(--itemWidth) 0 blue, 
+		inset var(--itemWidth) var(--itemWidth) 0 yellow, 
+		0 0 20px silver;
+	transition: box-shadow ease-in-out .6s, color ease-in-out .5s;	
+	width: var(--itemWidth);
+	height: var(--itemWidth);
+	border-radius: 50%;
+	text-align: center;
+	background: center/50%  no-repeat;
+	cursor: pointer;
+	display: grid;
+	color: brown;
+	font-size: calc(var(--itemWidth) /4 );
+	grid-row:  2 / 3;
+    
+}
+.item:hover{
+	box-shadow: 
+		inset 0 0 0 transparent, 
+		inset 0 0 0 transparent, 
+		inset 0 0 0 transparent, 
+		inset 0 0 0 transparent, 
+		0 0 20px silver;
+	color: transparent;
+}
+section{
+	--itemWidth: min(200px, 40vw);
+	--itemWidthMinus: calc(-1 * var(--itemWidth));
+	height: max-content;
+	width: max-content;
+	display: grid;
+	grid-template-rows: repeat(2, max-content);
+	grid-template-columns: repeat(6, calc(1vw + var(--itemWidth)));
+	font-family:cursive;
+
+}
+
+.item:first-of-type {
+    background-image: url("assets/f0355c2f1393b1b5366ae18d34cb6dd4.png");
+    background-size: 100%; /* Zoom in by 150% */
+    background-position: center;
+    background-color: rgb(254, 215, 255);
+     /* Center the image */
+
+}
+    
+
+.item:nth-of-type(2){
+	background-image: url("assets/a11276577acc811346fe9c7305b10423.png");
+    background-size: 100%; /* Zoom in by 150% */
+    background-position: center;
+    background-color: rgb(224, 221, 255);
+     /* Center the image */
+}
+.item:nth-of-type(3){
+	background-image: url("assets/e8194d22d3f9ddfca450368c8352dcb8.png");
+    background-size: 95%; /* Zoom in by 150% */
+    background-position: center;
+    background-color: rgb(255, 227, 200);
+
+}
+.item:nth-of-type(4){
+	background-image: url("assets/09fc7a9d738739ff4f2460b46879f9ed.png");
+    background-size: 95%; /* Zoom in by 150% */
+    background-position: center;
+    background-color: rgb(255, 221, 221);
+
+}
+.item:nth-of-type(6){
+	background-image: url("assets/cd07034a2d2cc66b49ab52e95b8aa0f2.png");
+    background-size: 88%; /* Zoom in by 150% */
+    background-position:end;
+    background-color: rgb(218, 255, 207);
+
+}
+.item:nth-of-type(5){
+	background-image: url("assets/813c8001d3866d52f3ba8ea477b726f3.png");
+    background-size: 90%; /* Zoom in by 150% */
+    background-position:right;
+    background-color: rgb(255, 238, 252);
+}
+.item > span {
+	width: 80%;
+	user-select: none; -moz-user-select: none; -webkit-user-select: none;
+    /* font-size: vw; */
+
+}
+h3{
+	grid-row: 1 / 2;
+	grid-column: 1 / 4;
+	height: 80px;
+	width: 90vw;
+	text-align: center;
+    color: rgb(0, 183, 255);
+}
+body * { place-self: center;}
+body {
+	display: grid;
+	width: 100%;
+}
+.instructions {
+    font-size: 2em;
+    font-weight: bold;
+    background: linear-gradient(90deg, #ff007f, #7f00ff, #007fff, #00ff7f, #ff7f00, #ff007f);
+    background-size: 400%; /* Increase size for smoother transitions */
+    -webkit-background-clip: text;
+    color: transparent; /* Make text transparent to show gradient */
+    animation: gradientAnimation 5s infinite linear; /* Continuous gradient animation */
+    transition: background-size 0.5s ease-in-out; /* Smooth transition when hovered */
+}
+
+/* Hover effect to dynamically change colors */
+.instructions:hover {
+    background-size: 200%;
+    animation: gradientAnimationHover 2s infinite linear; /* Faster animation on hover */
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+@keyframes gradientAnimationHover {
+    0% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+.second_conatiner{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* width: 100vw; */
+    margin-top: 20vh;
+    /* margin-bottom: 20vh; */
+    /* overflow: hidden; */
+    color:white;
+}
+
+    </style>
+</head>
+
+<body>
+    <audio id="audio-player" autoplay>
+        <source src="01-Monk-Turner-Fascinoma-Its-Your-Birthday(chosic.com).mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- First video background -->
+    <video id="video-background" autoplay muted>
+        <source src="assets/230431_large.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Second video background (initially hidden) -->
+    <video id="second-video" autoplay muted>
+        <source src="assets\107257-678130120_large.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div id="main-content">
+        <h1 id="birthday-message">Happy Birthday <span id="name"></span>!</h1>
+    </div>
+
+    <!-- Scrollable content container -->
+    <div class="divcontainer">
+        <div class="video-wrapper">
+            <video class="main_suhani" src="assets\Suhani .mp4" autoplay muted></video>
+        </div>
+    </div>
+    <div class="container">
+        <p><em class = "instructions">Vro Pls take the cursor on letters</em></p>
+
+        <section>
+            <div class=item><span >S</span></div>
+            <div class=item><span>U</span></div>
+            <div class=item><span>H</span></div>
+            <div class=item><span>A</span></div>
+            <div class=item><span>N</span></div>
+            <!-- <div class=item><span>H</span></div> -->
+            <div class=item><span>I</span></div>
+        </section>
+    </div>
+   <div class="second_conatiner">
+    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit assumenda optio voluptatum libero aliquam pariatur sequi at similique, rem distinctio, consectetur iure, consequuntur voluptatibus id totam! Aperiam illum nulla, explicabo ab quasi neque provident a, facere voluptas aut harum dignissimos ad temporibus blanditiis inventore odit officiis ipsa quaerat maiores repudiandae dolores cupiditate qui quia. Ea eaque distinctio veritatis nulla iste ut quos numquam iure consectetur harum possimus, nisi deleniti error alias fuga hic. Corporis, magni. Repellendus excepturi, placeat quod quos cum et ut repellat id corporis. Suscipit rerum repellendus illum aperiam? Sequi quaerat enim perspiciatis distinctio deleniti aspernatur quis optio.
+   </div>
+    <script>
+       
+    // Typing effect for the birthday message
+        function startTypingEffect() {
+            const names = ["Hairless star", "Moti", "Choti", "Suhani"];
+            let currentIndex = 0;
+            const nameElement = document.getElementById("name");
+
+            function typeName(name, i) {
+                if (i < name.length) {
+                    nameElement.textContent += name.charAt(i); // Add one character at a time
+                    setTimeout(() => typeName(name, i + 1), 100); // Type next character after 100ms
+                } else if (name !== "Suhani") { // Stop the effect if the name is "Suhani"
+                    setTimeout(() => eraseName(name), 1200); // Wait for 1.5 seconds before erasing
+                }
+            }
+
+            function eraseName(name) {
+                let i = name.length;
+                function erasing() {
+                    if (i >= 0) {
+                        nameElement.textContent = name.substring(0, i); // Remove one character at a time
+                        i--;
+                        setTimeout(erasing, 50); // Erase next character after 50ms
+                    } else {
+                        currentIndex = (currentIndex + 1) % names.length; // Move to the next name
+                        setTimeout(() => typeName(names[currentIndex], 0), 500); // Wait before typing the next name
+                    }
+                }
+                erasing();
+            }
+
+            setTimeout(() => {
+                const mainContent = document.getElementById("main-content");
+                mainContent.style.visibility = 'visible'; // Make the content visible
+                typeName(names[currentIndex], 0); // Start typing the first name
+            }, 6000); // Delay of 6 seconds before the text appears
+        }
+
+        window.onload = startTypingEffect; // Call the function when the window loads
+
+        // Handle video transition
+        const videoBackground = document.getElementById('video-background');
+        const secondVideo = document.getElementById('second-video');
+
+        videoBackground.addEventListener('ended', () => {
+            videoBackground.style.opacity = 0; // Fade out the first video
+            setTimeout(() => {
+                videoBackground.style.display = 'none'; // Hide the first video completely
+                secondVideo.style.display = 'block'; // Display the second video
+            }, 500); 
+        });
+
+        // Video scroll play/pause functionality
+        const video = document.querySelector('.main_suhani');
+
+        function isVideoInView() {
+            const rect = video.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+        window.addEventListener('scroll', () => {
+            if (isVideoInView()) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        });
+    </script>
+</body>
+</html>
