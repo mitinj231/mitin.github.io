@@ -1,373 +1,700 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Happy Birthday</title>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Birthday Message</title>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
     <style>
-        /* Reset default margin and padding */
-        body, html {
+      
+
+      
+
+        .wrapper {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            border: 1px solid #fff;
+            background-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align:center;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+        .wrapper:hover {
+    box-shadow: 0 0 20px 10px rgba(210, 254, 251, 0.6); /* Pink glow */
+    transform: scale(1.02); /* Slight zoom effect */
+}
+        h1, h2 {
             margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow-x: hidden; /* Prevent horizontal scrolling */
+            line-height: 1.25;
         }
 
-        /* Video background styling */
-        #video-background, #second-video {
+        .aboutthedata {
+            padding-bottom: 20px;
+            border-bottom: 4px dotted;
+            font-size:2.4rem;
+            text-transform: uppercase;
+            text-shadow: 0.5px 0.1px #fffcf5, 1px 2px;
+            
+        }
+
+        h2 {
+            margin-top: 40px;
+            font-size: 1.5rem;
+        }
+
+        canvas {
             position: fixed;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            z-index: -3;    
             top: 0;
             left: 0;
         }
 
-        #video-background {
-            z-index: -2;
+        @media screen and (min-width: 450px) {
+            h1 {
+                font-size: 4rem;
+            }
+            h2 {
+                font-size: 2rem;
+            }
         }
+  .both{
+    display: flex;
+    justify-content: center;
 
-        #second-video {
-            z-index: -1;
-            display: none; /* Initially hidden */
-        }
+  }
+  .main_content{
+    color: rgb(153, 0, 170);
 
-        /* Main content styling */
-        #main-content {
-            position: relative;
-            z-index: 1;
+  }
+.data{
+    color: rgb(153, 0, 170);
+}
+.thank{
+    color: rgb(153, 0, 170);
+}
+.final{
+    color: rgb(153, 0, 170);
+
+}
+.once{
+    color: rgb(153, 0, 170);
+}
+  .both>div{
+            font-size: x-large;
+            font-weight: bold;
+            background: linear-gradient(204deg, rgb(31, 207, 195) 0.00%, rgb(31, 145, 207) 100.00%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+  }
+
+        .videopart {
+
+            /* margin-left: 5%; */
             display: flex;
             justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-            color: #f8e71c;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-            visibility: hidden; /* Initially hidden */
+            width: 90%;
+
+            margin-top: 200px;
+            margin: auto;
+
+            /* position: absolute; */
         }
-
-        #birthday-message {
-            font-size: 4em;
-            font-weight: bold;
-            font-family: 'Pacifico', cursive;
+        .my_image{
+            z-index: 10;
         }
-
-        #name {
-            color: #ff4081;
+        .video1 {
+            box-shadow: 2px 2px 200px 5px rgb(96, 77, 0);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-top: 200px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
-        /* Scrollable content styling */
-        .divcontainer {
-            position: relative;
-            display: flex;
-    justify-content: center;
-    align-items: center;
-    /* width: 100vw; */
-    height: 100vh;
-    margin-bottom: 20vh;
-    overflow: hidden;
-    
-}
-
-.video-wrapper {
-    /* Example border color */
-    border-radius: 10px; /* Desired border radius */
-    overflow: hidden; /* Ensure the video respects the border radius */
-}
-
-.main_suhani {
-    width: 90vw;
-    height: auto;
-    margin: 20px auto;
-    object-fit: cover;
-    transition: opacity;
-    /* Removed border-radius from here */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    transition: transform 2s ease-in-out;
-    display: inline;
-   
-}
-
-        .container {
-            position: relative;
-            z-index: 3;
+        .video2{
+            box-shadow: 2px 2px 200px 5px rgb(96, 77, 0);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-top: 200px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
         
-            /* max-height: 100vh; */
-            overflow-y: auto;
-            /* background-image: linear-gradient(135deg, #eec0c6, #7ee8fa); */
-            padding: 10px;
-            margin: 5vh auto;
-            width: 90vw;
-            height: auto;
-            /* border-radius: 10px; */
-            /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); */
-            
-        }
-
-        .item{
-	box-shadow: 
-		inset var(--itemWidthMinus) var(--itemWidthMinus) 0  rgb(255,228,225), 
-		inset var(--itemWidth) var(--itemWidthMinus) 0 rgb(255,228,225), 
-		inset var(--itemWidthMinus) var(--itemWidth) 0 blue, 
-		inset var(--itemWidth) var(--itemWidth) 0 yellow, 
-		0 0 20px silver;
-	transition: box-shadow ease-in-out .6s, color ease-in-out .5s;	
-	width: var(--itemWidth);
-	height: var(--itemWidth);
-	border-radius: 50%;
-	text-align: center;
-	background: center/50%  no-repeat;
-	cursor: pointer;
-	display: grid;
-	color: brown;
-	font-size: calc(var(--itemWidth) /4 );
-	grid-row:  2 / 3;
-    
-}
-.item:hover{
-	box-shadow: 
-		inset 0 0 0 transparent, 
-		inset 0 0 0 transparent, 
-		inset 0 0 0 transparent, 
-		inset 0 0 0 transparent, 
-		0 0 20px silver;
-	color: transparent;
-}
-section{
-	--itemWidth: min(200px, 40vw);
-	--itemWidthMinus: calc(-1 * var(--itemWidth));
-	height: max-content;
-	width: max-content;
-	display: grid;
-	grid-template-rows: repeat(2, max-content);
-	grid-template-columns: repeat(6, calc(1vw + var(--itemWidth)));
-	font-family:cursive;
-
-}
-
-.item:first-of-type {
-    background-image: url("assets/f0355c2f1393b1b5366ae18d34cb6dd4.png");
-    background-size: 100%; /* Zoom in by 150% */
-    background-position: center;
-    background-color: rgb(254, 215, 255);
-     /* Center the image */
-
-}
-    
-
-.item:nth-of-type(2){
-	background-image: url("assets/a11276577acc811346fe9c7305b10423.png");
-    background-size: 100%; /* Zoom in by 150% */
-    background-position: center;
-    background-color: rgb(224, 221, 255);
-     /* Center the image */
-}
-.item:nth-of-type(3){
-	background-image: url("assets/e8194d22d3f9ddfca450368c8352dcb8.png");
-    background-size: 95%; /* Zoom in by 150% */
-    background-position: center;
-    background-color: rgb(255, 227, 200);
-
-}
-.item:nth-of-type(4){
-	background-image: url("assets/09fc7a9d738739ff4f2460b46879f9ed.png");
-    background-size: 95%; /* Zoom in by 150% */
-    background-position: center;
-    background-color: rgb(255, 221, 221);
-
-}
-.item:nth-of-type(6){
-	background-image: url("assets/cd07034a2d2cc66b49ab52e95b8aa0f2.png");
-    background-size: 88%; /* Zoom in by 150% */
-    background-position:end;
-    background-color: rgb(218, 255, 207);
-
-}
-.item:nth-of-type(5){
-	background-image: url("assets/813c8001d3866d52f3ba8ea477b726f3.png");
-    background-size: 90%; /* Zoom in by 150% */
-    background-position:right;
-    background-color: rgb(255, 238, 252);
-}
-.item > span {
-	width: 80%;
-	user-select: none; -moz-user-select: none; -webkit-user-select: none;
-    /* font-size: vw; */
-
-}
-h3{
-	grid-row: 1 / 2;
-	grid-column: 1 / 4;
-	height: 80px;
-	width: 90vw;
-	text-align: center;
-    color: rgb(0, 183, 255);
-}
-body * { place-self: center;}
-body {
-	display: grid;
-	width: 100%;
-}
-.instructions {
-    font-size: 2em;
-    font-weight: bold;
-    background: linear-gradient(90deg, #ff007f, #7f00ff, #007fff, #00ff7f, #ff7f00, #ff007f);
-    background-size: 400%; /* Increase size for smoother transitions */
-    -webkit-background-clip: text;
-    color: transparent; /* Make text transparent to show gradient */
-    animation: gradientAnimation 5s infinite linear; /* Continuous gradient animation */
-    transition: background-size 0.5s ease-in-out; /* Smooth transition when hovered */
-}
-
-/* Hover effect to dynamically change colors */
-.instructions:hover {
-    background-size: 200%;
-    animation: gradientAnimationHover 2s infinite linear; /* Faster animation on hover */
-}
-
-@keyframes gradientAnimation {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 100% 50%; }
-}
-
-@keyframes gradientAnimationHover {
-    0% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-.second_conatiner{
-    position: relative;
+        /* Container styling */
+        /* body {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* width: 100vw; */
-    margin-top: 20vh;
-    /* margin-bottom: 20vh; */
-    /* overflow: hidden; */
-    color:white;
-}
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #f5a623, #fbc08d);
+    font-family: Arial, sans-serif;
+} */
 
+        .name-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            animation: float 3s infinite ease-in-out alternate;
+            /* Floating effect */
+        }
+
+        /* Individual letter styling */
+        .letter {
+            font-size: 12vw;
+            /* Large text */
+            font-weight: bold;
+            background: linear-gradient(45deg, #5a57ff, #ff00ff, #ff0000, #ff6347);
+            -webkit-background-clip: text;
+            color: transparent;
+            position: relative;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            cursor: pointer;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+            /* Sparkle glow */
+        }
+
+        /* Hover effect for each letter */
+        .letter:hover {
+            transform: scale(1.2) rotate(5deg);
+            /* Slight rotation */
+            filter: drop-shadow(0 0 10px #ffd700) drop-shadow(0 0 20px #ff6347);
+            /* Enhanced sparkle */
+        }
+
+        .FALTU {
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Tooltip styling */
+
+
+        /* Tooltip styling */
+        .letter::after {
+            content: attr(data-tooltip);
+            /* Display the tooltip text */
+            position: absolute;
+            top: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px;
+            font-size: 2vw;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #ffffff;
+            border-radius: 8px;
+            opacity: 0;
+            transition: opacity 0.3s ease, top 0.3s ease;
+            white-space: pre-wrap;
+            /* Allows line breaks */
+            pointer-events: none;
+            box-shadow: 0 0 8px rgba(253, 133, 255, 0.6);
+        }
+
+        /* Show tooltip on hover */
+        .letter:hover::after {
+            opacity: 1;
+            top: -100px;
+            /* Move tooltip upwards on hover */
+        }
+
+        /* Show tooltip on hover */
+        .letter:hover::after {
+            opacity: 1;
+            top: -100px;
+        }
+
+        .strikethrough {
+            text-decoration: line-through;
+            /* Creates a line through the text */
+            color: #ffffff;
+            /* You can adjust the color to fit your design */
+        }
+
+        .black {
+            height: 100%;
+            width: 100%;
+            background-color: red;
+        }
+
+        /* Floating animation */
+        @keyframes float {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-10px);
+            }
+        }
+
+        .part4 {
+            display: flex;
+            justify-content: center;
+            margin-top: 100px;
+            color: rgb(255, 0, 242);
+            text-shadow: 2px 2px 20px #5a57ff;
+        }
+
+        .video1:hover {
+            transform: scale(1.05);
+            /* Slightly enlarge the video on hover */
+            box-shadow: 2px 2px 200px 10px rgba(255, 165, 0, 0.7);
+            /* Enhance shadow color and size */
+            cursor: pointer;
+            /* Change cursor to indicate interactivity */
+        }
+
+        @media (min-width:480px) {
+            .scroll-down {
+                font-size: 2rem;
+            }
+        }
+
+        @media(max-width:439px) {
+            .scroll-down {
+                font-size: 1rem;
+            }
+        }
+
+        .scroll-down {
+            /* Adjust font size as needed */
+            font-weight: bold;
+            /* Make it bold */
+            color: transparent;
+            /* Hide the text color */
+            background: linear-gradient(90deg, #ff007a, #ffb347);
+            /* Gradient effect */
+            background-clip: text;
+            /* Clip the background to the text */
+            -webkit-background-clip: text;
+            /* For Safari */
+            animation: bounce 2s infinite;
+            /* Bounce animation */
+            text-align: center;
+            /* Center the text */
+            margin-top: 50px;
+            /* Space above the text */
+            position: relative;
+            /* Position for pseudo-element */
+        }
+
+        .scroll-down::after {
+            content: '';
+            /* Empty content for underline */
+            display: block;
+            width: 60%;
+            /* Width of the underline */
+            height: 5px;
+            /* Height of the underline */
+            background: #ff007a;
+            /* Color of the underline */
+            margin: 10px auto;
+            /* Center the underline */
+            animation: wave 2s infinite;
+            /* Wave animation */
+        }
+
+        /* Bounce animation */
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-20px);
+            }
+
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Wave animation for the underline */
+        @keyframes wave {
+
+            0%,
+            100% {
+                transform: scaleX(1);
+            }
+
+            50% {
+                transform: scaleX(1.2);
+                /* Scale effect */
+            }
+        }
+        @media (max-width:800px) {
+            .video1{
+                display: none;
+            }
+        }
+        @media (min-width:801px) {
+            .video2{
+                display: none;
+            }
+        }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.17.1/matter.min.js"></script>
+    <!-- matter-wrap plugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.17.1/plugins/matter-wrap.min.js"></script>
 </head>
 
 <body>
-    <audio id="audio-player" autoplay>
-        <source src="assets\01-Monk-Turner-Fascinoma-Its-Your-Birthday(chosic.com).mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-
-    <!-- First video background -->
-    <video id="video-background" autoplay muted>
-        <source src="assets/230431_large.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-
-    <!-- Second video background (initially hidden) -->
-    <video id="second-video" autoplay muted>
-        <source src="assets\107257-678130120_large.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-
-    <div id="main-content">
-        <h1 id="birthday-message">Happy Birthday <span id="name"></span>!</h1>
-    </div>
-
-    <!-- Scrollable content container -->
-    <div class="divcontainer">
-        <div class="video-wrapper">
-            <video class="main_suhani" src="assets\Suhani .mp4" autoplay muted></video>
-        </div>
-    </div>
     <div class="container">
-        <p><em class = "instructions">Vro Pls take the cursor on letters</em></p>
+        <div class="row">
+            <div class="loader">
+                
+                <button id="play">
+                    <p class="theta">
+                        Let's Begin <br>
+                        <span class="an">Tap to Enjoy</span>
+                    </p>
 
-        <section>
-            <div class=item><span >S</span></div>
-            <div class=item><span>U</span></div>
-            <div class=item><span>H</span></div>
-            <div class=item><span>A</span></div>
-            <div class=item><span>N</span></div>
-            <!-- <div class=item><span>H</span></div> -->
-            <div class=item><span>I</span></div>
-        </section>
+                </button>
+                
+            </div>
+            
+        </div>
+    
     </div>
-   <div class="second_conatiner">
-    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit assumenda optio voluptatum libero aliquam pariatur sequi at similique, rem distinctio, consectetur iure, consequuntur voluptatibus id totam! Aperiam illum nulla, explicabo ab quasi neque provident a, facere voluptas aut harum dignissimos ad temporibus blanditiis inventore odit officiis ipsa quaerat maiores repudiandae dolores cupiditate qui quia. Ea eaque distinctio veritatis nulla iste ut quos numquam iure consectetur harum possimus, nisi deleniti error alias fuga hic. Corporis, magni. Repellendus excepturi, placeat quod quos cum et ut repellat id corporis. Suscipit rerum repellendus illum aperiam? Sequi quaerat enim perspiciatis distinctio deleniti aspernatur quis optio.
-   </div>
-    <script>
-       
-    // Typing effect for the birthday message
-        function startTypingEffect() {
-            const names = ["Hairless star", "Moti", "Choti", "Suhani"];
-            let currentIndex = 0;
-            const nameElement = document.getElementById("name");
+    <audio class="song" controls loop>
+        <source src="music.mp3">
+        </source>
+        Your browser isn't invited for super fun audio time.
+    </audio>
+    <canvas id="confetti"></canvas>
+    <div class="main">
+        <div class="container pt-5">
+            <div class="row">
 
-            function typeName(name, i) {
-                if (i < name.length) {
-                    nameElement.textContent += name.charAt(i); // Add one character at a time
-                    setTimeout(() => typeName(name, i + 1), 100); // Type next character after 100ms
-                } else if (name !== "Suhani") { // Stop the effect if the name is "Suhani"
-                    setTimeout(() => eraseName(name), 1200); // Wait for 1.5 seconds before erasing
-                }
-            }
+                <div class="col-12 col-xl-6 mx-auto">
+                    <img src="img/banner.png" alt="">
+                </div>
 
-            function eraseName(name) {
-                let i = name.length;
-                function erasing() {
-                    if (i >= 0) {
-                        nameElement.textContent = name.substring(0, i); // Remove one character at a time
-                        i--;
-                        setTimeout(erasing, 50); // Erase next character after 50ms
-                    } else {
-                        currentIndex = (currentIndex + 1) % names.length; // Move to the next name
-                        setTimeout(() => typeName(names[currentIndex], 0), 500); // Wait before typing the next name
-                    }
-                }
-                erasing();
-            }
+                <div class="col-12  text-center">
+                    <div id="name" class="area">Suhani</div>
+                </div>
 
-            setTimeout(() => {
-                const mainContent = document.getElementById("main-content");
-                mainContent.style.visibility = 'visible'; // Make the content visible
-                typeName(names[currentIndex], 0); // Start typing the first name
-            }, 6000); // Delay of 6 seconds before the text appears
-        }
+                <div class="col-12 text-center">
+                    <div class="type-wrap">
+                        <div id="typed-strings" class="typing">
+                            <h2>
+                                Hii 19 saal ki Suhani!
+                            </h2>
 
-        window.onload = startTypingEffect; // Call the function when the window loads
+                            <h5>
+                                May your day be filled with 🎉😊
+                            </h5>
+                            <h5>
+                                laughter,love,and
+                            </h5>
+                            <h5>
+                                all the joy you bring to others!
+                            </h5>
+                        </div>
+                        <span id="typed" style="white-space:pre;"></span>
+                    </div>
+                </div>
 
-        // Handle video transition
-        const videoBackground = document.getElementById('video-background');
-        const secondVideo = document.getElementById('second-video');
+                <div class="col-12 col-xl-3 cake" >
+                    <img src="img/cake.gif" alt="">
+                </div>
 
-        videoBackground.addEventListener('ended', () => {
-            videoBackground.style.opacity = 0; // Fade out the first video
-            setTimeout(() => {
-                videoBackground.style.display = 'none'; // Hide the first video completely
-                secondVideo.style.display = 'block'; // Display the second video
-            }, 500); 
-        });
+            </div>
+        </div>
+        <img src="img/Balloon-Border.png" width="100%" class="balloon-border">
 
-        // Video scroll play/pause functionality
-        const video = document.querySelector('.main_suhani');
+    </div>
+    <div CLASS="FALTU">
+        <p class="scroll-down">SCROLL DOWN BRO</p>
 
-        function isVideoInView() {
-            const rect = video.getBoundingClientRect();
-            return (
-                rect.top >= 0 &&
-                rect.left >= 0 &&
-                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-            );
-        }
+    </div>
+    <div class="videopart">
+        <video src="Suhani video final.mp4" class="video1" muted></video> 
+        <video src="suhanipart2.mp4" class = "video2" muted></video>
+    </div>
+    <div class="part4">
+        <p>
+            Hover on Letters
+        </p>
+    </div>
+    <div class="name-container">
 
-        window.addEventListener('scroll', () => {
-            if (isVideoInView()) {
-                video.play();
-            } else {
-                video.pause();
-            }
-        });
-    </script>
+        <span class="letter" data-tooltip="Sweet (Maska lagane me Expert)">S</span>
+        <span class="letter" data-tooltip="Understanding++">U</span>
+        <span class="letter" data-tooltip="Hasya padarth">H</span>
+        <span class="letter" data-tooltip="dadi ki AAGYAKARI ">A</span>
+        <span class="letter nalayak" data-tooltip="(N)letter ke layak toh kuch bhi nhi h">N</span>
+        <span class="letter"
+            data-tooltip="Ichadhari Insaan adapt Changes for others&#10;only Depression and Happiness me">I</span>
+
+    </div>
+    <div class="wrapper">
+        <p class="aboutthedata">Kuch baate esi bhi,</p>
+        <!-- Content here -->
+    <p class = "main_content">
+        Bhai mene apni life me kabhi socha bhi nhi tha ki suhani naam ki ladki kya kr rhi hogi like 4th to 10th fir achanak se bekar kismat ho gyi or tu introduce hui The One and only Legendary Suhani is Back . Again as Legendary logo se muje bda drr lgta h (kya matlab muje apne aap se drr lgta h),Finally we are here,pta nhi, pr muje yeh likhte hue bhut acha lg rha h,<br>
+        <p class = "thank">Thank you for,</p> 
+       <ul>
+        <li class = "data">
+            Hr baat me apna gyaan dholne ke liye,<br>pr tere paas koi option nhi dena toh padega.
+        </li>
+        <br>
+
+        <li class = "data">
+            For always listening me with such a passions.
+        </li>
+       <br>
+
+        <li class = "data">
+          For making such a bond in this short time.
+        </li>
+       </ul>
+    <p class = "final">
+        matlab me kaafi comfortable toh ho hi gya hu obviously,or esa hone ke liye dosti Care,Roasting,Bakwaas se bhari honi chahiye or yeh toh rg rg me zinda h tere.Vese yeh sb likha h voh sb common sense ki baate h pr iske alava dimaag me kuch aa nhi rha h mere,
+         
+    </p>
+      
+       <p class = "once">
+        Once again
+       </p>
+      <div class="both">
+        <div id="staticText">Happy Birthday&nbsp;</div>
+    <div id="typingEffect"></div>
+    
+    
+      </div>
+   
+
+    </p>
+       <p class="final">
+        ek or nya year or bhi opportunities is saal andha chaapna , dadi ki umeedo pe kayam bnke dikhana 😎, or bss tu u hi mst rhe matlab apni sadbudhi se hr chiz se fight kr ske (gyaan me ese de rha hu jese me toh kr chuka hu 🤣).
+        <br>
+
+        <p class = "final" style="margin-bottom: 0px;">
+            Please Note - I am waiting for Financial Independence Day.
+        </p>
+        <p style="font-size: small;margin-top: 0px;color: red;">Jox</p>
+        <p class="final">
+            bss yaar, tu sahi me star toh h dimaag ke chahe kitne bhi lge ho mood at the end mst ho hi jaata h uske liye chahe fir tuje reel bhejni pade yaa bacho ki aavaj nikalni pade yaa UP vaala accent yeh sb me kabhi bhool nhi paunga or time aane pr chidaunga🤣.
+        </p>
+        <p class ="final" style="font-size: xx-large;">
+            All the Best for Your Future . May you become a Real Star for Everyone One Day,<span style="color: #00aab9;"> Like me</span>. 
+        </p>
+        
+       </p> 
+    </div>
+    <canvas id="bg"></canvas>
+    
 </body>
+<script>
+    Matter.use('matter-wrap');
+
+let floatyBubbles = {
+    options: {
+        canvasSelector: '#bg',
+        radiusRange: [50, 100],
+        xVarianceRange: [-0.5, 0.5],
+        yVarianceRange: [0.5, 1.5],
+        airFriction: 0.03,
+        opacity: 1,
+        collisions: true,
+        scrollVelocity: 0.025,
+        pixelsPerBody: 50000,
+        colors: ['#e4e4cc', '#e1d2c4', '#d1e4df']
+    },
+
+    scrollDelay: 100,
+    resizeDelay: 400,
+    lastOffset: undefined,
+    scrollTimeout: undefined,
+    resizeTimeout: undefined,
+    engine: undefined,
+    render: undefined,
+    runner: undefined,
+    bodies: undefined,
+
+    init(options) {
+        this.options = Object.assign({}, this.options, options);
+
+        let viewportWidth = document.documentElement.clientWidth;
+        let viewportHeight = document.documentElement.clientHeight;
+
+        this.lastOffset = window.pageYOffset;
+        this.scrollTimeout = null;
+        this.resizeTimeout = null;
+
+        this.engine = Matter.Engine.create();
+        this.engine.world.gravity.y = 0;
+
+        this.render = Matter.Render.create({
+            canvas: document.querySelector(this.options.canvasSelector),
+            engine: this.engine,
+            options: {
+                width: viewportWidth,
+                height: viewportHeight,
+                wireframes: false,
+                background: 'transparent'
+            }
+        });
+        Matter.Render.run(this.render);
+
+        this.runner = Matter.Runner.create();
+        Matter.Runner.run(this.runner, this.engine);
+
+        this.bodies = [];
+        let totalBodies = Math.round(viewportWidth * viewportHeight / this.options.pixelsPerBody);
+        for (let i = 0; i <= totalBodies; i++) {
+            let body = this.createBody(viewportWidth, viewportHeight);
+            this.bodies.push(body);
+        }
+        Matter.World.add(this.engine.world, this.bodies);
+
+        window.addEventListener('scroll', this.onScrollThrottled.bind(this));
+        window.addEventListener('resize', this.onResizeThrottled.bind(this));
+    },
+  
+    shutdown() {
+        Matter.Engine.clear(this.engine);
+        Matter.Render.stop(this.render);
+        Matter.Runner.stop(this.runner);
+
+        window.removeEventListener('scroll', this.onScrollThrottled);
+        window.removeEventListener('resize', this.onResizeThrottled);
+    },
+  
+    randomize(range) {
+        let [min, max] = range;
+        return Math.random() * (max - min) + min;
+    },
+  
+    createBody(viewportWidth, viewportHeight, x = null, y = null) {
+        x = x !== null ? x : this.randomize([0, viewportWidth]);
+        y = y !== null ? y : this.randomize([0, viewportHeight]);
+        let radius = this.randomize(this.options.radiusRange);
+        let color = this.options.colors[this.bodies.length % this.options.colors.length];
+      
+        return Matter.Bodies.circle(x, y, radius, {
+            render: {
+                fillStyle: color,
+                opacity: this.options.opacity
+            },
+            frictionAir: this.options.airFriction,
+            collisionFilter: {
+                group: this.options.collisions ? 1 : -1
+            },
+            plugin: {
+                wrap: {
+                    min: { x: 0, y: 0 },
+                    max: { x: viewportWidth, y: viewportHeight }
+                }
+            }
+        });
+    },
+  
+    onScrollThrottled() {
+        if (!this.scrollTimeout) {
+            this.scrollTimeout = setTimeout(this.onScroll.bind(this), this.scrollDelay);
+        }
+    },
+  
+    onScroll() {
+        this.scrollTimeout = null;
+
+        let delta = (this.lastOffset - window.pageYOffset) * this.options.scrollVelocity;
+        this.bodies.forEach((body) => {
+            Matter.Body.setVelocity(body, {
+                x: body.velocity.x + delta * this.randomize(this.options.xVarianceRange),
+                y: body.velocity.y + delta * this.randomize(this.options.yVarianceRange)
+            });
+        });
+      
+        let viewportWidth = document.documentElement.clientWidth;
+        let viewportHeight = document.documentElement.clientHeight;
+        let scrollHeight = document.documentElement.scrollHeight;
+        let totalBodies = Math.round((viewportWidth * scrollHeight) / this.options.pixelsPerBody);
+        if (this.bodies.length < totalBodies) {
+            let body = this.createBody(viewportWidth, scrollHeight);
+            this.bodies.push(body);
+            Matter.World.add(this.engine.world, body);
+        }
+
+        this.lastOffset = window.pageYOffset;
+    },
+  
+    onResizeThrottled() {
+        if (!this.resizeTimeout) {
+            this.resizeTimeout = setTimeout(this.onResize.bind(this), this.resizeDelay);
+        }
+    },
+  
+    onResize() {
+        this.shutdown();
+        this.init();
+    }
+};
+
+window.addEventListener('DOMContentLoaded', () => {
+    Object.create(floatyBubbles).init({
+        canvasSelector: '#bg'
+    });
+});
+const words = ["Suhani", "Moti", "Choti", "Star"];
+let wordIndex = 0;
+let letterIndex = 0;
+const typingElement = document.getElementById("typingEffect");
+
+function type() {
+    if (letterIndex < words[wordIndex].length) {
+        typingElement.textContent += words[wordIndex].charAt(letterIndex);
+        letterIndex++;
+        setTimeout(type, 150);
+    } else {
+        setTimeout(erase, 800); // Pause before erasing
+    }
+}
+
+function erase() {
+    if (letterIndex > 0) {
+        typingElement.textContent = words[wordIndex].substring(0, letterIndex - 1);
+        letterIndex--;
+        setTimeout(erase, 100);
+    } else {
+        wordIndex = (wordIndex + 1) % words.length; // Move to the next word
+        setTimeout(type, 200); // Start typing the next word
+    }
+}
+
+document.addEventListener("DOMContentLoaded", type)
+    // Confetti Effect Function
+    function createConfetti() {
+        const confettiContainer = document.createElement('div');
+        confettiContainer.classList.add('confetti-container');
+        document.body.appendChild(confettiContainer);
+
+        for (let i = 0; i < 100; i++) {
+            const confetti = document.createElement('div');
+            confetti.classList.add('confetti');
+            confetti.style.left = `${Math.random() * 100}vw`;
+            confetti.style.animationDuration = `${3 + Math.random() * 3}s`;
+            confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+            confettiContainer.appendChild(confetti);
+        }
+    }
+
+    // Start confetti on page load
+    window.onload = createConfetti();
+
+</script>
+<script src="https://unpkg.com/magic-snowflakes/dist/snowflakes.min.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/typed.min.js"></script>
+<script src="js/script.js"></script>
+
 </html>
